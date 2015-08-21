@@ -115,6 +115,7 @@
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($c_name, $phone, $id, $stylist_id);
             $new_phone = "503-434-5549";
+            $test_client->save();
 
             //Act
             $test_client->setPhone($new_phone);
@@ -169,6 +170,54 @@
 
             //Assert
             $this->assertEquals([$test_client, $test_client2], $result);
+        }
+
+        function test_getStylistId()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
+            $test_client->save();
+
+            //Act
+            $result = $test_client->getStylistId();
+
+            //Assert
+            $this->assertEquals($stylist_id, $result);
+        }
+
+        function test_update_client()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
+            $test_client->save();
+
+            $new_name = "Jerry Gergich";
+            $new_phone = "503-864-4444";
+            $new_stylist_id = $stylist_id;
+            $updated_client = new Client($new_name, $new_phone, $id, $new_stylist_id);
+            $updated_client->save();
+
+            //Act
+            $test_client->update_client($new_name, $new_phone, $id, $new_stylist_id);
+
+            //Assert
+            $this->assertEquals($test_client, $updated_client);
         }
 
 

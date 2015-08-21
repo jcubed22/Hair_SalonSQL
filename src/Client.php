@@ -108,6 +108,7 @@
             $this->setName($new_c_name);
             $this->setPhone($new_phone);
             $this->setStylistId($new_stylist_id);
+            $id = $this->getId();
         }
 
         //Delete a client
