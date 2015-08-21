@@ -14,6 +14,6 @@ CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR (255));
 DROP DATABASE hair_salon_test;
 
 
-CREATE TABLE clients (name VARCHAR (255), phone VARCHAR (255), id serial PRIMARY KEY, stylist_id INT);
+CREATE TABLE clients (c_name VARCHAR (255), phone VARCHAR (255), id serial PRIMARY KEY, stylist_id INT);
 
 (Navigate to localhost:8080/phpmyadmin -> username: root | password: root -> select "hair_salon" on the left and click "Operations" tab on top of screen -> select "Structure only" radio under "Copy database to", then enter "hair_salon_test" and click "Go".)
