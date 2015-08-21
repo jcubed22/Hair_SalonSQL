@@ -110,6 +110,21 @@
             //Assert
             $this->assertEquals($test_stylist, $result);
         }
+
+        function test_update()
+        {
+            //Arrange
+            $name = "Stephen";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $new_name = "Stephanie";
+
+            //Act
+            $test_stylist->update_stylist($new_name);
+
+            //Assert
+            $this->assertEquals($new_name, $test_stylist->getName());
+        }
     }
 
 ?>
