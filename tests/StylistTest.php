@@ -19,6 +19,20 @@
             Stylist::deleteAll();
         }
 
+        function test_setName()
+        {
+            //Arrange
+            $name = "Brenda";
+            $test_stylist = new Stylist($name);
+            $new_name = "Moonbeam Starchild";
+
+            //Act
+            $test_stylist->setName($new_name);
+
+            //Assert
+            $this->assertEquals($test_stylist->getName(), $new_name);
+        }
+
         function test_getName()
         {
             //Arrange
@@ -124,6 +138,23 @@
 
             //Assert
             $this->assertEquals($new_name, $test_stylist->getName());
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $name = "Brenda";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $name2 = "Eduardo";
+            $test_stylist2 = new Stylist($name);
+            $test_stylist2->save();
+
+            //Act
+            $test_stylist->delete_stylist();
+
+            //Assert
+            $this->assertEquals([$test_stylist2], Stylist::getAll());
         }
     }
 
