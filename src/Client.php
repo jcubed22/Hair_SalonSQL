@@ -70,9 +70,10 @@
         {
             $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients ORDER BY c_name;");
             $clients = array();
-            foreach($returned_clients as $client) {
+            foreach ($returned_clients as $client) {
                 $c_name = $client['c_name'];
                 $phone = $client['phone'];
+                $id = $client['id'];
                 $stylist_id = $client['stylist_id'];
                 $new_client = new Client($c_name, $phone, $id, $stylist_id);
                 array_push($clients, $new_client);
