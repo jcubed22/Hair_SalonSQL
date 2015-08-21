@@ -4,7 +4,6 @@
     {
         private $name;
         private $id;
-    }
 
         function __construct($name, $id=null)
         {
@@ -13,7 +12,7 @@
         }
 
         //Name setter and getter
-        function setName($new_name);
+        function setName($new_name)
         {
             $this->name = $new_name;
         }
@@ -82,7 +81,7 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
         }
-
+    }
 
 
 
