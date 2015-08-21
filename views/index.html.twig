@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <title>Madame Deflorian's Hair Emporium</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to Madame Deflorian's Hair Emporium!</h1>
+            <p class="lead">Please take a moment to peruse our list of world-class stylists.  Click on his or her name to add yourself as a client.</p>
+
+            {% if stylists is not empty %}
+                <ul>
+                    {% for stylist in stylists %}
+                        <li><h4><strong><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></strong></h4></l1>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>I'm sorry, it appears we don't have any stylists.  What a terrible salon we are.</h3>
+            {% endif %}
+
+            <form action="/add_stylist">
+                <div class="form-group">
+                    <label for="name">Enter the stylist's name</label>
+                    <input id="name" type="name" class="form-control" type="text" placeholder="Stylist's Name" required>
+                </div>
+                <button type="submit" class="btn btn-success">Add Stylist</button>
+            </form>
+            <form action="/delete_stylists" method="post">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete all your stylists?')">Delete all stylists</button>
+            </form>
+    </div>
+    </body>
+</html>
