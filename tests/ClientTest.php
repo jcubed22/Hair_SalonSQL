@@ -201,17 +201,21 @@
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
+            $name2 = "Sandra";
+            $test_stylist2 = new Stylist($name2, $id);
+            $test_stylist2->save();
+
             $c_name = "Garry Gergich";
             $phone = "503-472-8959";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($c_name, $phone, $id, $stylist_id);
-            $test_client->save();
+
 
             $new_name = "Jerry Gergich";
             $new_phone = "503-864-4444";
-            $new_stylist_id = $stylist_id;
+            $new_stylist_id = $test_stylist2->getId();
             $updated_client = new Client($new_name, $new_phone, $id, $new_stylist_id);
-            $updated_client->save();
+
 
             //Act
             $test_client->update_client($new_name, $new_phone, $id, $new_stylist_id);
