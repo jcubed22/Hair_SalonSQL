@@ -37,11 +37,13 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    //
     $app->get('/stylists/{id}', function($id) use ($app) {
         $stylist = Stylist::find($id);
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
+    //Submits form to create new client for current stylist.
     $app->post('/add_client', function() use ($app) {
         $c_name = $_POST['name'];
         $phone = $_POST['phone'];
@@ -53,6 +55,7 @@
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
+    //Returns the page for selected client.
     $app->get('/clients/{id}', function($id) use ($app) {
         $client = Client::find($id);
         $stylists = Stylist::getAll();
@@ -60,6 +63,7 @@
         return $app['twig']->render('client.html.twig', array('client' => $client, 'stylists' => $stylists));
     });
 
+    //Edits client information
     $app->patch('/update_client', function() use ($app) {
         $name = $_POST['name'];
         $phone = $_POST['phone'];
@@ -72,6 +76,8 @@
 
         return $app['twig']->render('client.html.twig', array('client' => $client, 'stylists' => $stylists));
     });
+
+    //Ran out of time to try and figure out deletion of individual clients and stylists.
 
     return $app;
 
