@@ -21,6 +21,27 @@
             Stylist::deleteAll();
         }
 
+        function test_setName()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = 2;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
+            $new_c_name = "Jerry Gergich";
+
+            //Act
+            $test_client->setName($new_c_name);
+
+            //Assert
+            $this->assertEquals($test_client->getName(), $new_c_name);
+        }
+
         function test_getId()
         {
             //Arrange
