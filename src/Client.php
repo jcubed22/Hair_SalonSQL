@@ -2,28 +2,28 @@
 
     class Client
     {
-        private $name;
+        private $c_name;
         private $phone;
         private $id;
         private $stylist_id;
 
-        function __construct($name, $phone, $id = null, $stylist_id)
+        function __construct($c_name, $phone, $id = null, $stylist_id)
         {
-            $this->name = $name;
+            $this->c_name = $c_name;
             $this->phone = $phone;
             $this->id = $id;
             $this->stylist_id = $stylist_id;
         }
 
         //Name setter and getter
-        function setName($new_name)
+        function setName($new_c_name)
         {
-            $this->name = $new_name;
+            $this->c_name = $new_c_name;
         }
 
         function getName()
         {
-            return $this->name;
+            return $this->c_name;
         }
 
         //Phone number setter and getter
@@ -57,7 +57,7 @@
         //Save function
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO clients (name, phone, stylist_id) VALUES
+            $GLOBALS['DB']->exec("INSERT INTO clients (c_name, phone, stylist_id) VALUES
                 ('{$this->getName()}',
                 '{$this->getPhone()}',
                 {$this->getStylistId()})"
@@ -68,13 +68,13 @@
         //Get all clients
         static function getAll()
         {
-            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients ORDER BY name;");
+            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients ORDER BY c_name;");
             $clients = array();
             foreach($returned_clients as $client) {
-                $name = $client['name'];
+                $c_name = $client['c_name'];
                 $phone = $client['phone'];
                 $stylist_id = $client['stylist_id'];
-                $new_client = new Client($name, $phone, $id, $stylist_id);
+                $new_client = new Client($c_name, $phone, $id, $stylist_id);
                 array_push($clients, $new_client);
             }
             return $clients;
@@ -101,10 +101,10 @@
         }
 
         //Update the client
-        function update_client($new_name, $new_phone, $id, $new_stylist_id)
+        function update_client($new_c_name, $new_phone, $id, $new_stylist_id)
         {
-            $GLOBALS['DB']->exec("UPDATE clients SET name = '{$new_name}', phone = '{$new_phone}', stylist_id = {$new_stylist_id} WHERE id = $id;");
-            $this->setName($new_name);
+            $GLOBALS['DB']->exec("UPDATE clients SET c_name = '{$new_c_name}', phone = '{$new_phone}', stylist_id = {$new_stylist_id} WHERE id = $id;");
+            $this->setName($new_c_name);
             $this->setPhone($new_phone);
             $this->setStylistId($new_stylist_id);
         }
@@ -114,7 +114,7 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
         }
-        
+
 
 
     }
