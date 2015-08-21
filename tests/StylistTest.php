@@ -50,7 +50,7 @@
         {
             //Arrange
             $name = "Brenda";
-            $id = 2;
+            $id = null;
             $test_stylist = new Stylist($name, $id);
 
             //Act

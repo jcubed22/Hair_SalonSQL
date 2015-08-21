@@ -25,7 +25,7 @@
         {
             //Arrange
             $name = "Sasha";
-            $id = 2;
+            $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -46,7 +46,7 @@
         {
             //Arrange
             $name = "Sasha";
-            $id = 2;
+            $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -66,7 +66,7 @@
         {
             //Arrange
             $name = "Sasha";
-            $id = 2;
+            $id = 1;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -86,7 +86,7 @@
         {
             //Arrange
             $name = "Sasha";
-            $id = 2;
+            $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -106,7 +106,7 @@
         {
             //Arrange
             $name = "Sasha";
-            $id = 2;
+            $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -123,7 +123,32 @@
             $this->assertEquals($test_client->getPhone(), $new_phone);
         }
 
-        
+        function test_save()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
+            $test_client->save();
+
+            $c_name2 = "Jerry Gergich";
+            $phone2 = "503-560-5060";
+            $stylist_id2 = $test_stylist->getId();
+            $test_client2 = new Client($c_name2, $phone2, $id, $stylist_id2);
+            $test_client2->save();
+
+            //Act
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
 
 
 
