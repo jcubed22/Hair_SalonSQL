@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <title>{{ stylist.getName }}</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1><strong>{{ stylist.getName }}</strong></h1>
+            <hr>
+            {% if clients is not empty %}
+                <h3>Here are {{ stylist.getName }}'s current clients:</h3>
+                    {% for client in clients %}
+                        <li><a href="/clients/{{ client.getId }}">{{ client.getName }}</a></li>
+                    {% endfor %}
+            {% else %}
+                <h3>This stylist does not currently have any clients.  Sign yourself up!</h3>
+            {% endif %}
+
+            <form action="/add_client" method="post">
+                <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+                <h3>Please tell us a little about yourself:</h3>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" class="form-control" type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" class="form-control" type="text" placeholder="Phone number" required>
+                </div>
+                <button type="submit" class="btn btn-success">Add client</button>
+            </form>
+            <form action="/">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </form>
+        </div>
+    </body>
+</html>
