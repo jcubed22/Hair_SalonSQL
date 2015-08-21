@@ -135,6 +135,27 @@
             $phone = "503-472-8959";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($c_name, $phone, $id, $stylist_id);
+
+            //Act
+            $test_client->save();
+
+            //Assert
+            $result = Client::getAll();
+            $this->assertEquals($test_client, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
             $test_client->save();
 
             $c_name2 = "Jerry Gergich";
@@ -151,14 +172,7 @@
         }
 
 
-
-
     }
-
-
-
-
-
 
 
 ?>
