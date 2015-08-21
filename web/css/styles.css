@@ -7,5 +7,10 @@ h1 {
 
 li {
     font-family: 'Pinyon Script', cursive;
-    line-height: 200%;
+    line-height: 125%;
+    font-size: 2em;
 }
+
+/*body {
+    text-align: center;
+}*/
