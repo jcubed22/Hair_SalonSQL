@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <title>{{ client.getName }}</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ client.getName }}</h1>
+            <p class="lead">{{ client.getPhone }}</p>
+            <form action="/update_client" method="post">
+                <input name="_method" type="hidden" value="patch">
+                <input id="client_id" name="client_id" type="hidden" value="{{ client.getId }}">
+                <h3>Update your contact information below:</h3>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" class="form-control" type="text" value="{{ client.getName }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone number</label>
+                    <input id="phone" name="phone" class="form-control" type="text" value="{{ client.getPhone }}" required>
+                </div>
+                <label for="stylist_id">Stylist</label>
+                <select class="form-control" id="stylist_id" name="stylist_id" value="{{ client.getStylistId }}">
+                    {% for stylist in stylists %}
+                        {% if client.getStylistId == stylist.getId %}
+                            <option value="{{ stylist.getId }}" selected>{{ stylist.getName }}</option>
+                        {% else %}
+                            <option value="{{ stylist.getId }}">{{ stylist.getName }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            <form action="/">
+            <button type="submit" class="btn btn-primary">Home</button>
+        </form>
+        </div>
+    </body>
+</html>

@@ -12,12 +12,12 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    // use Symfony\Component\HttpFoundation\Request;
-    // Request::enableHttpMethodParamterOverride();
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'));
 
-    //Home page.
+    //Home page
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
@@ -51,6 +51,26 @@
 
         $stylist = Stylist::find($stylist_id);
         return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
+    $app->get('/clients/{id}', function($id) use ($app) {
+        $client = Client::find($id);
+        $stylists = Stylist::getAll();
+
+        return $app['twig']->render('client.html.twig', array('client' => $client, 'stylists' => $stylists));
+    });
+
+    $app->patch('/update_client', function() use ($app) {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $stylist_id = $_POST['stylist_id'];
+        $client_id = $_POST['client_id'];
+
+        $stylists = Stylist::getAll();
+        $client = Client::find($client_id);
+        $client->update_client($name, $phone, $client_id, $stylist_id);
+
+        return $app['twig']->render('client.html.twig', array('client' => $client, 'stylists' => $stylists));
     });
 
     return $app;
