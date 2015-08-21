@@ -60,7 +60,6 @@
 
             //Assert
             $this->assertEquals($c_name, $result);
-
         }
 
         function test_getId()
@@ -81,6 +80,26 @@
 
             //Assert
             $this->assertEquals(true, is_numeric($result));
+        }
+
+        function test_getPhone()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = 2;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
+
+            //Act
+            $result = $test_client->getPhone();
+
+            //Assert
+            $this->assertEquals($phone, $result);
         }
 
 
