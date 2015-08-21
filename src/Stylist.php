@@ -53,6 +53,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists;");
+            $GLOBALS['DB']->exec("DELETE FROM clients;");
         }
 
         //Find function
@@ -76,10 +77,11 @@
             $this->setName($new_name);
         }
 
-        //Delete a Stylist...dun dun DUNNNNN.  **UPDATE FOR CLIENTS**
+        //Delete a Stylist...dun dun DUNNNNN.
         function delete_stylist()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
         }
 
         function getClients()

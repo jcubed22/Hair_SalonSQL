@@ -15,7 +15,7 @@
                         <li><a href="/clients/{{ client.getId }}">{{ client.getName }}</a></li>
                     {% endfor %}
             {% else %}
-                <h3>This stylist does not currently have any clients.  Sign yourself up!</h3>
+                <h3>This stylist does not currently have any clients.  If you give us your name and phone number, {{ stylist.getName }} will give you a call as soon as possible to discuss how we can help you!</h3>
             {% endif %}
 
             <form action="/add_client" method="post">
