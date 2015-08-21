@@ -1,12 +1,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
         <title>Madame Deflorian's Hair Emporium</title>
     </head>
     <body>
         <div class="container">
-            <h1>Welcome to Madame Deflorian's Hair Emporium!</h1>
-            <p class="lead">Please take a moment to peruse our list of world-class stylists.  Click on his or her name to add yourself as a client.</p>
+            <h1><strong>Welcome to Madame Deflorian's Hair Emporium</strong></h1>
+            <hr>
+            <p>Please take a moment to peruse our list of world-class stylists.  Click on his or her name to add yourself as a client.</p>
 
             {% if stylists is not empty %}
                 <ul>
@@ -15,13 +18,13 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <h3>I'm sorry, it appears we don't have any stylists.  What a terrible salon we are.</h3>
+                <h4>I'm sorry, it appears we don't have any stylists.  What a terrible salon we are.</h4>
             {% endif %}
 
-            <form action="/add_stylist">
+            <form action="/add_stylist" method="post">
                 <div class="form-group">
                     <label for="name">Enter the stylist's name</label>
-                    <input id="name" type="name" class="form-control" type="text" placeholder="Stylist's Name" required>
+                    <input id="name" name="name" class="form-control" type="text" placeholder="Stylist's Name" required>
                 </div>
                 <button type="submit" class="btn btn-success">Add Stylist</button>
             </form>
