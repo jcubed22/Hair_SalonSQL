@@ -102,6 +102,29 @@
             $this->assertEquals($phone, $result);
         }
 
+        function test_setPhone()
+        {
+            //Arrange
+            $name = "Sasha";
+            $id = 2;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $c_name = "Garry Gergich";
+            $phone = "503-472-8959";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($c_name, $phone, $id, $stylist_id);
+            $new_phone = "503-434-5549";
+
+            //Act
+            $test_client->setPhone($new_phone);
+
+            //Assert
+            $this->assertEquals($test_client->getPhone(), $new_phone);
+        }
+
+        
+
 
 
 
