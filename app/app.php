@@ -16,10 +16,12 @@
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'));
 
+    //Home page.
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    //Creates a new stylist and returns to home page.
     $app->post('/add_stylist', function() use ($app) {
         $stylist = new Stylist($_POST['name']);
         $stylist->save();
@@ -27,13 +29,14 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    //Deletes all stylists, returns to home page.
     $app->post('/delete_stylists', function() use($app) {
         Stylist::deleteAll();
 
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    
+
 
 
     return $app;
